@@ -105,7 +105,6 @@ class Student{
     }
     getAverageBySubject(subjectName){
         return (subjectName in this.marks) ? this.marks[subjectName].reduce((akk, b) => (akk + b), 0) / this.marks[subjectName].length : 0;
-        
     }
     getAverage(){
         const allSubject = Object.keys(this.marks);
@@ -115,16 +114,7 @@ class Student{
     }
 }
 
-//const student = new Student("Олег Никифоров");
-//student.addMark(5, "химия");
-//console.log(student);
-//student.addMark(3, "химия");
-//console.log(student);
-//student.addMark(5, "физика");
-//console.log(student);
-//console.log(student.getAverageBySubject("химия"));
-//console.log(student.getAverageBySubject("физика"));
-//console.log(student.getAverage());
+
 
 
 
