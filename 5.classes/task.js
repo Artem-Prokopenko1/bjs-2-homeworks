@@ -9,7 +9,7 @@ class PrintEditionItem{
         this.type = null;
     }
     fix(){
-        this.state = this.state * 1.5;
+        this.state *= 1.5;
     }
     set state(state){
         if(state < 0){
@@ -74,17 +74,22 @@ class Library{
         }
     } 
     findBookBy(type, value){
-        let searchBook = this.books.find(item => item[type] == value);
-        return searchBook ? searchBook : null;
+        const searchBook = this.books.find(item => item[type] == value);
+        return searchBook || null;
     }
-    giveBookByName(bookName){
+    /*giveBookByName(bookName){
         let indexSearchBook = this.books.findIndex(item => item.name == bookName);
         if (indexSearchBook >= 0){
             let result = this.books[indexSearchBook];
             this.books.splice(indexSearchBook, 1);
             return result;
         }return null;
-    }
+    }*/
+    giveBookByName(bookName) {
+        const findResult = this.books.find((item) => item.name === bookName);
+        this.books = this.books.filter((item) => item.name !== bookName);
+        return findResult || null;
+        }
 }
 
 //Задача 3. Журнал успеваемости *
