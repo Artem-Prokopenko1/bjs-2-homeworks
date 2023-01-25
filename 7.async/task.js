@@ -21,19 +21,21 @@ class AlarmClock{
         return `${checkTime(newDate.getHours())}:${checkTime(newDate.getMinutes())}`;
     }
     start(){
-        if(!this.intervalId){
-            function runAlarm(){
-                this.alarmCollection.forEach(element => {
-                    if(element.time === this.getCurrentFormattedTime()){
-                        element.canCall = false;
-                        element.callback();
-                    }
-                });
-            }
-            const bindedRunAlarm = runAlarm.bind(this);
-            let timerId = setInterval(bindedRunAlarm, 1000);
-            this.intervalId = timerId;
+        if(this.intervalId){
+            return;
         }
+        function runAlarm(){
+            this.alarmCollection.forEach(element => {
+                if(element.time === this.getCurrentFormattedTime() && element.canCall === true){
+                    element.canCall = false;
+                    element.callback();
+                }
+             });
+        }
+        const bindedRunAlarm = runAlarm.bind(this);
+        let timerId = setInterval(bindedRunAlarm, 1000);
+        this.intervalId = timerId;
+        
 
     }
     stop(){
